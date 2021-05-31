@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--  Bootstrap CSS  -->
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+  <!--  Styles CSS  -->
+  <link rel="stylesheet" href="./css/main.css">
+
+  <title>TOTVS Desafio Front-end</title>
+</head>
+
+<body>
+  <header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <img src="https://www.totvs.com/wp-content/uploads/2019/09/logo.png" alt="" class="bi me-2"
+            style="width: 60px;">
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 text-white">PRODUTOS</a></li>
+          <li><a href="#" class="nav-link px-2 text-secondary">CLIENTES</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">SEGMENTOS</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">SOBRE</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">ASSINATURA</a></li>
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" class="form-control form-control-dark" placeholder="Buscar..." aria-label="Search">
+        </form>
+
+        <div class="text-end">
+          <button type="button" class="btn btn-outline-light me-2">Buscar</button>
+          <button id="btn-add-client" type="button" class="btn btn-primary" onclick="showModalAddClient()">Cadastrar
+            Cliente</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="./assets/totovs.png" alt="TOTVS Logo">
+        <h2>BASE GLOBAL DE CLIENTES</h2>
+        <p class="lead">Essa é uma base global de clientes TOTVS. Aqui você podera cadastrar, consultar, editar e
+          deletar um cliente. Ao cadastrar um novo cliente é importante que você preencha todos os campos do formulário,
+          para o correto cadastramento
+          do cliente.</p>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Nome Fantasia</th>
+              <th scope="col">Localidade</th>
+              <th scope="col">Data</th>
+              <th scope="col">CNPJ</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="table-client">
+
+          </tbody>
+        </table>
+        <div id="no-content" class="no-content no-content-hiden">
+          <img src="./assets/no-content.png" alt="Buscando" style="width: 20%;">
+          <h3>Ops!</h3>
+          <p class="fs-5">Ainda não existe clientes cadastrados na base!</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL CONFIRMAÇÂO -->
+  <div id="modal-confirmacao-client" class="modal-confirmacao-container">
+    <div class="modal-confirmacao">
+      <button id="btn-close-modal" class="btn-close close"></button>
+      <div style="justify-content: center; align-items: center; text-align: center;">
+        <img src="./assets/cuidado.png" alt="Cuidado" style="width: 30%;">
+        <h5 class="subtitulo" style="padding: 20px 0 10px 0;">Tem certeza que deseja deletar o registro?</h5>
+        <p>Escolhendo deletar o registro do cliente da base de dados, não será possivel recuperar os dados
+          posteriormente.</p>
+        <div>
+          <button id="btn-confirm-delete" class="btn btn-success btn-lg" type="button">Deletar</button>
+          <button id="btn-cancel" class="btn btn-danger btn-lg" type="button">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE SUCESSO  -->
+  <div id="modal-success-client" class="modal-success-container">
+    <div class="modal-success">
+      <button id="btn-close-modal" class="btn-close close"></button>
+      <div style="justify-content: center; align-items: center; text-align: center;">
+        <img src="./assets/success.png" alt="Sucesso" style="width: 40%;">
+        <h3 id="info-text-success" class="subtitulo" style="padding: 20px 0 10px 0;">Operação realizada com sucesso!
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE ERRO  -->
+  <div id="modal-error-client" class="modal-error-container">
+    <div class="modal-error">
+      <button id="btn-close-modal" class="btn-close close"></button>
+      <div style="justify-content: center; align-items: center; text-align: center;">
+        <img src="./assets/error.png" alt="Sucesso" style="width: 20%;">
+        <h3 id="info-text-success" class="subtitulo" style="padding: 20px 0 10px 0;">Algo deu errado!</h3>
+        <p class="fs-4">Não foi possivel realizar sua solicitação. Tente novamente mais tarde.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE INFO  -->
+  <div id="modal-info-client" class="modal-info-container">
+    <div class="modal-info">
+      <button id="btn-close-modal" class="btn-close close"></button>
+      <div style="justify-content: center; align-items: center; text-align: center; display: flex;">
+        <img src="./assets/alerta.png" alt="Sucesso" style="width: 10%; margin-right: 20px;">
+        <h5 id="info-text-success" class="subtitulo" style="padding: 20px 0 10px 0;">CNPJ já existe na base de dados!
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <!--  MODAL ADD CLIENT  -->
+  <div id="modal-add-client" class="modal-add-container">
+    <div class="modal-add">
+      <button id="btn-close-modal" class="btn-close close"></button>
+      <div>
+        <h3 id="text-title-add" class="subtitulo"></h3>
+      </div>
+
+      <hr>
+
+      <form id="form-dados" class="row g-3 needs-validation" novalidate>
+        <div class="col-md-2">
+          <label for="codigo" class="form-label label-title">Código</label>
+          <input type="text" class="form-control input-text" id="codigo" disabled required>
+        </div>
+        <div class="col-md-5">
+          <label for="nome" class="form-label label-title">Nome</label>
+          <input type="text" class="form-control input-text" id="nome" placeholder="Nome Completo" required>
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            Campo obrigatório!
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label for="fantasia" class="form-label label-title">Nome Fantasia</label>
+          <input type="text" class="form-control input-text" id="fantasia" placeholder="Nome Fantasia" required>
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            Campo obrigatório!
+          </div>
+        </div>
+        <div class="col-md-2">
+          <label for="cep" class="form-label label-title">Pesquisar CEP</label>
+          <input type="text" class="form-control input-text" id="cep" placeholder="00000-000" required>
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            Campo obrigatório!
+          </div>
+        </div>
+        <div class="col-md-10">
+          <label for="endereco" class="form-label label-title">Endereço</label>
+          <input type="text" class="form-control input-text" id="endereco" placeholder="Logradouro" required>
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            Campo obrigatório!
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label for="bairro" class="form-label label-title">Bairro</label>
+          <input type="text" class="form-control input-text" id="bairro" placeholder="Bairro" required>
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            Campo obrigatório!
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label for="localidade" class="form-label label-title">Localidade</label>
+          <input type="text" class="form-control input-text" id="localidade" placeholder="Localidade" required>
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            Campo obrigatório!
+          </div>
+        </div>
+        <div class="col-md-2">
+          <label for="uf" class="form-label label-title">UF</label>
+          <input type="text" class="form-control input-text" id="uf" placeholder="UF" required>
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            Campo obrigatório!
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="cnpj" class="form-label label-title">CNPJ</label>
+          <input type="text" class="form-control input-text" id="cnpj" placeholder="00.000.000/0000-00" required>
+          <div class="valid-feedback">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            Campo obrigatório!
+          </div>
+        </div>
+        <div class="col-12">
+          <button id="btn-save" class="btn btn-success" type="submit">Salvar</button>
+          <button id="btn-cancel-add" class="btn btn-danger" type="button" onclick="cleanFields()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL DETAIL -->
+  <div id="modal-details" class="modal-details-container">
+    <div class="modal-detail">
+      <button id="btn-close-modal" class="btn-close close"></button>
+      <h3 class="subtitulo">Resumo do Cliente</h3>
+
+      <hr>
+
+      <form class="row g-3 form-detail">
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="codigoCliente" class="form-label label-title">Código</label>
+            <input type="text" class="form-control input-text" id="codigoCliente" disabled>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="nameClient" class="form-label label-title">Nome</label>
+            <input type="text" class="form-control input-text" id="nameClient" disabled>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="fantasiaClient" class="form-label label-title">Nome Fantasia</label>
+            <input type="text" class="form-control input-text" id="fantasiaClient" disabled>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="cepClient" class="form-label label-title">CEP</label>
+            <input type="text" class="form-control input-text" id="cepClient" disabled>
+          </div>
+        </div>
+        <div class="col-md-10">
+          <div class="form-group">
+            <label for="adrressClient" class="form-label label-title">Endereço</label>
+            <input type="text" class="form-control input-text" id="adrressClient" disabled>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="districtClient" class="form-label label-title">Bairro</label>
+            <input type="text" class="form-control input-text" id="districtClient" disabled>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="localityClient" class="form-label label-title">Localidade</label>
+            <input type="text" class="form-control input-text" id="localityClient" disabled>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="ufClient" class="form-label label-title">UF</label>
+            <input type="text" class="form-control input-text" id="ufClient" disabled>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="dateClient" class="form-label label-title">Data</label>
+            <input type="text" class="form-control input-text" id="dateClient" disabled>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="cnpjClient" class="form-label label-title">CNPJ</label>
+            <input type="text" class="form-control input-text" id="cnpjClient" disabled>
+          </div>
+        </div>
+    </div>
+  </div>
+  </form>
+  </div>
+  </div>
+
+  <!-- SCRIPTS  -->
+  <script src="./js/jquery-3.6.0.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+  <script src="./js/jquery.mask.min.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="https://use.fontawesome.com/62e43a72a9.js"></script>
+</body>
+
+</html>

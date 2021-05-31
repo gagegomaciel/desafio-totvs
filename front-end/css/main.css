@@ -1,0 +1,286 @@
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, .1);
+  border: solid rgba(0, 0, 0, .15);
+  border-width: 1px 0;
+  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: var(--bs-dark);
+  border-color: var(--bs-gray);
+}
+.form-control-dark:focus {
+  color: #fff;
+  background-color: var(--bs-dark);
+  border-color: #fff;
+  box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
+}
+
+.bi {
+  vertical-align: -.125em;
+  fill: currentColor;
+}
+
+.text-small {
+  font-size: 85%;
+}
+
+.dropdown-toggle {
+  outline: 0;
+}
+
+.modal-info-container {
+  width: 100%;
+  position: fixed;
+  top: 20px;
+  left: 0;
+  z-index: 3000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-info-container.show {
+  display: flex;
+}
+
+.modal-info {
+  position: relative;
+  background: #FFF;
+  width: 30%;
+  min-width: 420px;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 4px 4px 8px rgb(0 0 0 / 50%);
+}
+
+
+.modal-error-container {
+  background: rgba(0, 0, 0, .2);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-error-container.show {
+  display: flex;
+}
+
+.modal-success-container {
+  background: rgba(0, 0, 0, .2);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-error {
+  position: relative;
+  background: #FFF;
+  width: 30%;
+  min-width: 420px;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 4px 4px 8px rgb(0 0 0 / 50%);
+}
+
+.modal-success-container.show {
+  display: flex;
+}
+
+.modal-success {
+  position: relative;
+  background: #FFF;
+  width: 30%;
+  min-width: 420px;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 4px 4px 8px rgb(0 0 0 / 50%);
+}
+
+.modal-confirmacao-container {
+  background: rgba(0, 0, 0, .2);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-confirmacao-container.show {
+  display: flex;
+}
+
+.modal-confirmacao {
+  position: relative;
+  background: #FFF;
+  width: 30%;
+  min-width: 420px;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 4px 4px 8px rgb(0 0 0 / 50%);
+}
+
+.modal-add-container {
+  background: rgba(0, 0, 0, .5);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-add-container.show {
+  display: flex;
+}
+
+.modal-add {
+  position: relative;
+  background: #FFF;
+  width: 60%;
+  min-width: 500px;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 4px 4px 8px rgb(0 0 0 / 50%);
+}
+
+.modal-details-container {
+  background: rgba(0, 0, 0, .5);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-details-container.show {
+  display: flex;
+}
+
+.modal-detail {
+  position: relative;
+  background: #FFF;
+  width: 60%;
+  min-width: 440px;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 4px 4px 8px rgb(0 0 0 / 50%);
+}
+
+@keyframes modal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -60px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.show .modal-info  {
+  animation: modal 0.5s;
+}
+
+.show .modal-error  {
+  animation: modal 0.5s;
+}
+
+.show .modal-success  {
+  animation: modal 0.5s;
+}
+
+.show .modal-confirmacao  {
+  animation: modal 0.5s;
+}
+
+.show .modal-detail  {
+  animation: modal 0.5s;
+}
+
+.show .modal-add  {
+  animation: modal 0.5s;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+}
+
+.form-detail {
+  margin-top: 20px;
+}
+
+.table-config {
+  text-align: end; 
+  white-space: nowrap;
+}
+
+.hiden-colum {
+  display: none;
+}
+
+.btn-space {
+  margin-left: 6px;
+}
+
+.label-title {
+  font-weight: 600;
+}
+
+.subTitle-detail {
+  color: #ccc;
+}
+
+.input-text {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 400;
+}
+
+.no-content {
+  margin-top: 40px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.no-content-hiden {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .modal-detail, 
+  .modal-add {
+    width: 100%;  
+    height: 100%;
+    overflow-y: auto;
+  }
+}
