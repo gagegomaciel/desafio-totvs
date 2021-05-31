@@ -17,7 +17,7 @@
 - HTML
 
 ## Inicialização do projeto
-- Baixar o repositório localmente no desktop `git clone`
+- Baixar o repositório localmente no desktop `git clone https://github.com/gagegomaciel/desafio-totvs.git`
 - Executar o arquivo `index.html`
 
 ### APIs utilizadas
